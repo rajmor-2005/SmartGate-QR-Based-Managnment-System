@@ -30,18 +30,19 @@ else{
 // find owner id based on wing and flat no from owner table
 
 $owner_result = $conn->query("SELECT owner_id FROM owner WHERE wing='$wing' AND flat_no='$flat_no'");
-if($owner_result->num_rows > 0){
-    $owner_row = $owner_result->fetch_assoc();
-    $owner_id = $owner_row['owner_id'];
-} else {
-    echo "Invalid wing or flat number";
+
+if($owner_result->num_rows == 0){
+    echo "Owner not found";
     exit;
-}
+} 
+
+$owner_row = $owner_result->fetch_assoc();
+$owner_id = $owner_row['owner_id'];
 
 // insert request into visit_request table
 
 $conn->query("INSERT INTO visit_request (visitor_id, owner_id, wing, flat_no, purpose, status) 
-            VALUES ($visitor_id, $owner_id, '$wing', '$flat_no', '$purpose', 'pending')");
+            VALUES ($visitor_id, $owner_id, '$wing', '$flat_no', '$purpose', 'Pending')");
 
 
 // store request id in session
