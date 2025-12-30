@@ -57,8 +57,8 @@ $owner_id=1;
             });
         }
 
-        // refresh every 3 seconds for new requests
-        setInterval(loadrequest,3000);
+        // refresh every 2 seconds for new requests
+        setInterval(loadrequest,2000);
         loadrequest();
     </script>
 </body>
