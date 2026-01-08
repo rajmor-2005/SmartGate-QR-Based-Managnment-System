@@ -7,7 +7,7 @@ if(!$token){
     die("<h2>Invalid QR</h2>");
 }
 
-$result=$conn->query("SELECT el*, vr.visitor_id, FROM entry_log el JOIN visit_request vr ON vr.request_id=el.request_id 
+$result=$conn->query("SELECT el.*, vr.visitor_id FROM entry_log el JOIN visit_request vr ON vr.request_id=el.request_id 
 WHERE el.qr_token='$token'");
 
 if($result->num_rows===0)
