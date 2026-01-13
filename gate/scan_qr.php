@@ -12,20 +12,25 @@
     <div id="reader" style="width:300px; margin:auto;"></div>
     
     <script>
-        const scanner =new Html5Qrcode("reader");
-
-        scanner.start({
-            facingMode:"environment"},
-        {fps:10, qrbox:250},
-    qrCodeMessage=>{
-        window.location.href=qrCodeMessage;
-    },
-errorMessage=>{
-    console.log(errorMessage);
+function onScanSuccess(decodedText, decodedResult) {
+    console.log("QR Code:", decodedText);
+    window.location.href = decodedText; // redirect to verify_qr.php
 }
 
+function onScanFailure(error) {
+    // ignore scan errors
+}
 
+let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader",
+    {
+        fps: 10,
+        qrbox: 250
+    },
+    false
 );
-    </script>
+
+html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+</script>
 </body>
 </html>

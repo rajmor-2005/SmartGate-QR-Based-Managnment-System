@@ -30,7 +30,7 @@ if(!is_dir($qr_dir)){
 }
 
     $qr_file = $qr_dir . $token . ".png"; // save in folder qr_codes
-    $qr_data = "http://localhost/SmartGate/gate/verify_qr.php?token=$token";
+    $qr_data = "https://alesha-exhilarative-trena.ngrok-free.dev/SmartGate/gate/verify_qr.php?token=$token";
     QRcode::png($qr_data, $qr_file, QR_ECLEVEL_L, 6);
 
 
