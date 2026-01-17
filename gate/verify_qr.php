@@ -1,11 +1,14 @@
 <?php
 
 include '../connection.php';
-$token = $_GET['token'];
 
-if(!$token){
+
+if(!isset($_GET['token'])){
     die("<h2>Invalid QR</h2>");
+    
 }
+
+$token = $_GET['token'];
 
 $result=$conn->query("SELECT el.*, vr.visitor_id FROM entry_log el JOIN visit_request vr ON vr.request_id=el.request_id 
 WHERE el.qr_token='$token'");
